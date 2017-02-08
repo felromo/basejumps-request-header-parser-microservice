@@ -6,17 +6,16 @@ var PORT = process.env.PORT || 8080;
 
 app.use(useragent.express());
 app.get('/', function(req, res){
-    // res.send(req.useragent);
     var headers = req.headers;
     var ip = req.ip;
-    var language = headers['accept-language'];
-    var os = headers['user-agent'];
+    var language = (headers['accept-language']).split(',')[0];
+    var os = req.useragent.os;
+
     res.send({
         ipaddress: ip,
         language: language,
         os: os
     });
-    console.log(JSON.stringify(req.headers));
 });
 
 
