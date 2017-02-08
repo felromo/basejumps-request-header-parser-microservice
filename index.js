@@ -11,8 +11,6 @@ app.get('/', function(req, res){
     var language = (headers['accept-language']).split(',')[0];
     var os = req.useragent.os;
 
-    console.log(req);
-
     res.send({
         ipaddress: ip,
         language: language,
