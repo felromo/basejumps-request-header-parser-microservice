@@ -15,7 +15,6 @@ app.get('/', function(req, res){
 
     res.send({
         ipaddress: ip,
-        geoIp: req.useragent.geoIp,
         language: language,
         os: os
     });
