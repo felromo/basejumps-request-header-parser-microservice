@@ -7,12 +7,15 @@ var PORT = process.env.PORT || 8080;
 app.use(useragent.express());
 app.get('/', function(req, res){
     var headers = req.headers;
-    var ip = req.ip;
+    var ip = headers['x-forwarded-for'] || req.connection.remoteAddress;
     var language = (headers['accept-language']).split(',')[0];
     var os = req.useragent.os;
 
+    console.log(req);
+
     res.send({
         ipaddress: ip,
+        geoIp: req.useragent.geoIp,
         language: language,
         os: os
     });
